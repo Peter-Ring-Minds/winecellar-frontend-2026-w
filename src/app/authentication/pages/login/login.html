@@ -1,10 +1,8 @@
-<div
-  class="flexbox w-full h-full bg-[url('/backgrounds/loginbg.png')] bg-cover bg-center bg-fixed justify-center flex content-center items-center"
->
+<div class="bg-wo-png bg-[url('/backgrounds/loginbg.png')] flex flex-col items-center">
   <form
     [formGroup]="loginForm"
     (ngSubmit)="onSubmit()"
-    class="w-md justify-center content-center flex flex-col items-center gap-4 bg-black/30 p-8 rounded-lg shadow-lg"
+    class="w-md align-items justify-center place-content-center flex flex-col items-center gap-4 bg-black/60 p-8 rounded-lg shadow-lg"
   >
     <h2 class="text-2xl font-bold mb-4 text-white">Login</h2>
     <input
@@ -19,11 +17,6 @@
       placeholder="Password"
       class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
     />
-    <button
-      type="submit"
-      class="btn-accept content-center w-30"
-    >
-      Login
-    </button>
+    <button type="submit" class="btn-accept content-center w-30">Login</button>
   </form>
 </div>

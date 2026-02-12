@@ -1,0 +1,15 @@
+<nav class="navbar bg-transparent text-black p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <div class="text-xl font-bold">WineCellar</div>
+    <div class="flex space-x-4">
+        <ul class="navbar-links flex justify-left space-x-4">
+            <li><a class="hover:text-stone-300 hover:underline" (click)="onSubmit('/collections')">Collections</a></li>
+            <li><a class="hover:text-stone-300 hover:underline" (click)="onSubmit('/home')">Home</a></li>
+            <li><a class="hover:text-stone-300 hover:underline" (click)="onSubmit('/cellars')">Cellars</a></li>
+            <li><a class="hover:text-stone-300 hover:underline" (click)="onSubmit('/storage')">Storage</a></li>
+            <li><a class="hover:text-stone-300 hover:underline" (click)="onSubmit('/wine')">Wine</a></li>
+            <li><a class="hover:text-stone-300 hover:underline" (click)="onSubmit('/settings')">Settings</a></li>
+        </ul>
+        </div>
+        </div>
+</nav>
