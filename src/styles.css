@@ -1,3 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "tailwindcss";
+@import 'tailwindcss';
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+@layer components {
+  .btn-accept {
+    background-color: var(--color-stone-400);
+    padding: calc(var(--spacing) * 2);
+    padding-inline: var(--spacing) * 5;
+    border-radius: var(--radius-4xl);
+    color: var(--color-black);
+  }
+
+  .btn-accept:hover {
+    background-color: var(--color-stone-600);
+  }
+}
