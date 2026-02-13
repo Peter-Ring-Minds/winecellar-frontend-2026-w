@@ -1,15 +1,16 @@
-import { inject } from '@angular/core';
-import { RedirectCommand, Router, UrlTree, type CanActivateFn } from '@angular/router';
+import { RedirectCommand, Router, type CanActivateFn } from '@angular/router';
 import { AuthClient } from '../clients/auth-client';
+import { inject } from '@angular/core';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const loggedInGuard: CanActivateFn = (route, state) => {
+
 
   const authClient = inject(AuthClient);
   const isLoggedIn = authClient.isLoggedIn();
 
   const router = inject(Router);
-  if (!isLoggedIn) {
-    const loginPath = router.parseUrl('/login');
+  if (isLoggedIn) {
+    const loginPath = router.parseUrl('/home');
     return new RedirectCommand(loginPath, {
       skipLocationChange: false,
     });

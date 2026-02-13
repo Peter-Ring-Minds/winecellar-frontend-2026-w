@@ -1,1 +1,8 @@
+
+<div class=" {{ bgImageUrl() }}  flex flex-col items-center bg-cover bg-center h-screen w-screen">
+@if (isLoggedIn()) {
+<app-navbar> </app-navbar>
+}
+
 <router-outlet> </router-outlet>
+</div>
