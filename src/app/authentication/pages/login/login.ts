@@ -20,18 +20,19 @@ export class LoginComponent {
   });
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.getRawValue());
-      const value = this.loginForm.getRawValue();
-      this.authClient.login(value).subscribe({
-        next: (accessToken) => {
-          console.log('Login successful:', accessToken);
-          this.router.navigate(['/']);
-        },
-        error: (error) => {
-          console.error('Login failed:', error);
-        },
-      });
+    if (this.loginForm.valid === false) {
+      return;
     }
+    console.log(this.loginForm.getRawValue());
+    const value = this.loginForm.getRawValue();
+    this.authClient.login(value).subscribe({
+      next: (accessToken) => {
+        console.log('Login successful:', accessToken);
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        console.error('Login failed:', error);
+      },
+    });
   }
 }

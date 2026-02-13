@@ -8,8 +8,8 @@ export const loggedInGuard: CanActivateFn = (route, state) => {
 
   const router = inject(Router);
   if (isLoggedIn) {
-    const loginPath = router.parseUrl('/home');
-    return new RedirectCommand(loginPath, {
+    const defaultPath = router.parseUrl('/');
+    return new RedirectCommand(defaultPath, {
       skipLocationChange: false,
     });
   }
