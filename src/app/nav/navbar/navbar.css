@@ -4,12 +4,9 @@
   top: 0;
   backdrop-filter: blur(2px);
   width: 100%;
-
-
 }
 
-:host::before
-{
+:host::before {
   content: '';
   position: absolute;
   top: 0;

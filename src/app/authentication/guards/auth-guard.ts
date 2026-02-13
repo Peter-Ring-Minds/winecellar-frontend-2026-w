@@ -3,7 +3,6 @@ import { RedirectCommand, Router, UrlTree, type CanActivateFn } from '@angular/r
 import { AuthClient } from '../clients/auth-client';
 
 export const authGuard: CanActivateFn = (route, state) => {
-
   const authClient = inject(AuthClient);
   const isLoggedIn = authClient.isLoggedIn();
 

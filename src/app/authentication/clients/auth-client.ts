@@ -3,15 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthClient {
-
   private readonly http = inject(HttpClient);
-  private _accessToken =signal<string | null>(localStorage.getItem('accessToken'));
+  private _accessToken = signal<string | null>(localStorage.getItem('accessToken'));
   public readonly accessToken = computed(() => this._accessToken());
-  public isLoggedIn= computed(() => this._accessToken() !== null);
-
+  public isLoggedIn = computed(() => this._accessToken() !== null);
 
   constructor() {
     effect(() => {
@@ -24,19 +22,19 @@ export class AuthClient {
     });
   }
 
-
-  public login(loginFormValue: {email: string, password: string}) {  
+  public login(loginFormValue: { email: string; password: string }) {
     return this.http
-        .post<{ accessToken: string }>('http://localhost:5132/auth/login', loginFormValue).pipe(
-          tap({
-            next: (response) => {
-              console.log('Login successful:', response);
-              this._accessToken.set(response.accessToken);
-            },
-            error: (error) => {
-              console.error('Login failed:', error);
-            },
-          }))
+      .post<{ accessToken: string }>('http://localhost:5132/auth/login', loginFormValue)
+      .pipe(
+        tap({
+          next: (response) => {
+            console.log('Login successful:', response);
+            this._accessToken.set(response.accessToken);
+          },
+          error: (error) => {
+            console.error('Login failed:', error);
+          },
+        }),
+      );
   }
-
 }

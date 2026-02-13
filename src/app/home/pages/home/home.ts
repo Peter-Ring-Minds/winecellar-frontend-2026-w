@@ -14,11 +14,7 @@ export class HomeComponent {
   private readonly router = inject(Router);
   private readonly http = inject(HttpClient);
 
-  protected readonly cards = [
-    "cellar",
-    "storage",
-    "wine"
-  ];
+  protected readonly cards = ['cellar', 'storage', 'wine'];
 
   onCardClick(path: string) {
     this.router.navigate([path]);

@@ -3,8 +3,6 @@ import { AuthClient } from '../clients/auth-client';
 import { inject } from '@angular/core';
 
 export const loggedInGuard: CanActivateFn = (route, state) => {
-
-
   const authClient = inject(AuthClient);
   const isLoggedIn = authClient.isLoggedIn();
 
