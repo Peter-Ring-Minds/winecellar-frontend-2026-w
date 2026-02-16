@@ -1,26 +1,27 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { map, Observable } from 'rxjs';
+import { map, Observable, subscribeOn } from 'rxjs';
 
 @Component({
   selector: 'app-add-cellar-page',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AsyncPipe],
   templateUrl: './add-cellar-page.html',
   styleUrl: './add-cellar-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddCellarPage {
+export class AddCellarPage implements OnInit {
   private readonly httpClient = inject(HttpClient);
-  protected listOfCellars$ = [this.httpGetCellars()];
 
+  cellars$!: Observable<Cellar[]>;
+
+  ngOnInit(): void {
+    this.cellars$ = this.httpClient.get<Cellar[]>('http://localhost:5132/api/Cellar');
+  }
   cellarForm = new FormGroup({
     name: new FormControl('', { validators: [Validators.required], nonNullable: true }),
   });
-
-  httpGetCellars(): Observable<any> {
-    return this.httpClient.get('/api/Cellar');
-  }
 
   onSubmitCellar() {
     if (this.cellarForm.valid === false) {
@@ -38,4 +39,10 @@ export class AddCellarPage {
       },
     });
   }
+}
+
+export interface Cellar {
+  cellarId: number;
+  userId: Number;
+  name: string;
 }

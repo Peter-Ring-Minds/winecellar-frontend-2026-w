@@ -40,7 +40,7 @@ export class App implements OnInit {
       return `bg-[url('/backgrounds/home-bg.png')]`;
     }
     if (currentUrl.includes('/cellar')) {
-      return `bg-[url('/backgrounds/cellar-bg.png')]`;
+      return `bg-[url('/backgrounds/add-cellar-bg.png')]`;
     }
     return '';
   });

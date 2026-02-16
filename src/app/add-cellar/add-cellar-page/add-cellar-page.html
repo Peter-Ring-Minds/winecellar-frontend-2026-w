@@ -2,15 +2,13 @@
 <div
   class="grid grid-cols-3 mx-auto flex flex-col items-center justify-center content-end pb-8 pl-4 pr-4 h-full gap-8"
 >
-  @for (item of listOfCellars$; track $index) {
+  @for (cellar of cellars$ | async; track cellar.cellarId) {
     <div>
       <div
         class="flex flex-col items-center gap-4 shadow-lg p-4 rounded-3xl bg-black/60 border-2 border-stone-500"
       >
-        <img src="/icons/{{ item }}-add-icon.png" />
-        <p class="text-lg font-bold mb-2 text-white text-center">
-          <strong>Add {{ item }}</strong>
-        </p>
+        <img src="/icons/cellar-add-icon.png" />
+        <p class="text-lg font-bold mb-2 text-white text-center">{{ cellar.name }}</p>
       </div>
     </div>
   }
