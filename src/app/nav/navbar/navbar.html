@@ -5,26 +5,51 @@
       <div class="flex space-x-4">
         <ul class="navbar-links flex justify-left space-x-4">
           <li>
-            <a class="hover:text-stone-300 hover:underline" (click)="onSubmit('collections')"
-              >Collections</a
+            <a
+              class="hover:text-stone-300 hover:underline"
+              routerLink="collections"
+              routerLinkActive="text-stone-400"
+              >Collections?</a
+            >
+          </li>
+
+          <li>
+            <a
+              class="hover:text-stone-300 hover:underline"
+              routerLink="home"
+              routerLinkActive="text-stone-400"
+              >Home</a
             >
           </li>
           <li>
-            <a class="hover:text-stone-300 hover:underline" (click)="onSubmit('home')">Home</a>
+            <a
+              class="hover:text-stone-300 hover:underline"
+              routerLink="cellar"
+              routerLinkActive="text-stone-400"
+              >Cellars</a
+            >
           </li>
           <li>
-            <a class="hover:text-stone-300 hover:underline" (click)="onSubmit('cellar')">Cellars</a>
-          </li>
-          <li>
-            <a class="hover:text-stone-300 hover:underline" (click)="onSubmit('storage')"
+            <a
+              class="hover:text-stone-300 hover:underline"
+              routerLink="storage"
+              routerLinkActive="text-stone-400"
               >Storage</a
             >
           </li>
           <li>
-            <a class="hover:text-stone-300 hover:underline" (click)="onSubmit('wine')">Wine</a>
+            <a
+              class="hover:text-stone-300 hover:underline"
+              routerLink="wine"
+              routerLinkActive="text-stone-400"
+              >Wine</a
+            >
           </li>
           <li>
-            <a class="hover:text-stone-300 hover:underline" (click)="onSubmit('settings')"
+            <a
+              class="hover:text-stone-300 hover:underline"
+              routerLink="settings"
+              routerLinkActive="text-stone-400"
               >Settings</a
             >
           </li>

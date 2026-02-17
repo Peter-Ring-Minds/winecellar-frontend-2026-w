@@ -1,5 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './nav/navbar/navbar';
 import { AuthClient } from './authentication/clients/auth-client';
 import { Location } from '@angular/common';
@@ -13,9 +13,7 @@ import { Location } from '@angular/common';
 export class App implements OnInit {
   private readonly authClient = inject(AuthClient);
   private readonly router = inject(Router);
-
   private readonly location = inject(Location);
-
   protected readonly isLoggedIn = this.authClient.isLoggedIn;
   protected readonly url = signal(this.router.url);
 
