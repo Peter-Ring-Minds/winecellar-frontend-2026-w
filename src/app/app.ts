@@ -2,11 +2,10 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './nav/navbar/navbar';
 import { AuthClient } from './authentication/clients/auth-client';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [NavbarComponent, RouterOutlet, NgClass],
+  imports: [NavbarComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
