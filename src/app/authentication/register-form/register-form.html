@@ -9,6 +9,7 @@
     placeholder="Email"
     class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
   />
+
   <input
     [formControl]="registerForm.controls.password"
     type="password"
@@ -21,8 +22,20 @@
     placeholder="Confirm Password"
     class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
   />
-  @if (passwordDoesntMatch()) {
-    <p class="text-red-500 text-sm mt-2">Passwords do not match</p>
+  @if (showErrors()) {
+    @if (
+      registerForm.controls.repeatPassword.touched && registerForm.controls.repeatPassword.invalid
+    ) {
+      <p class="text-red-500 text-sm mt-2">Confirm password is required</p>
+    }
+    @if (registerForm.hasError('passwordMismatch')) {
+      <p class="text-red-500 text-sm mt-2">Passwords do not match</p>
+    }
+
+    @if (registerForm.controls.email.hasError('email')) {
+      <p class="text-red-500 text-sm mt-2">Please enter a valid email address</p>
+    }
   }
+
   <button type="submit" class="btn-accept content-center w-50">{{ buttonText() }}</button>
 </form>
