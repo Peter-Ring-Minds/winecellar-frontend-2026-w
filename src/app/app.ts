@@ -2,13 +2,11 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './nav/navbar/navbar';
 import { AuthClient } from './authentication/clients/auth-client';
-import { NgClass } from '@angular/common';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [NavbarComponent, RouterOutlet, NgClass],
+  imports: [NavbarComponent, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -23,7 +21,6 @@ export class App implements OnInit {
 
   ngOnInit(): void {
     this.location.onUrlChange((url) => {
-      console.log('URL changed:', url);
       this.url.set(url);
     });
   }
