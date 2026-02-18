@@ -4,10 +4,9 @@ import { AuthClient } from '../clients/auth-client';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const authClient = inject(AuthClient);
-  const isLoggedIn = authClient.isLoggedIn();
-
   const router = inject(Router);
-  if (!isLoggedIn) {
+  if (!authClient.isLoggedIn()) {
+    authClient.logout();
     const loginPath = router.parseUrl('/login');
     return new RedirectCommand(loginPath, {
       skipLocationChange: false,

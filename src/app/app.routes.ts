@@ -9,6 +9,6 @@ import { AddCellarPage } from './add-cellar/add-cellar-page/add-cellar-page';
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [loggedInGuard] },
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'cellar', component: AddCellarPage, canActivate: [authGuard] },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
