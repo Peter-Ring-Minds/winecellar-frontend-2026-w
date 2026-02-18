@@ -1,20 +1,28 @@
-<form
-  [formGroup]="loginForm"
-  (ngSubmit)="onSubmit()"
+<div
   class="w-md align-items justify-center place-content-center flex flex-col items-center gap-4 bg-black/60 p-8 rounded-lg shadow-lg"
 >
   <h2 class="text-2xl font-bold mb-4 text-white">Login</h2>
-  <input
-    [formControl]="loginForm.controls.email"
-    type="text"
-    placeholder="Email"
-    class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
-  />
-  <input
-    [formControl]="loginForm.controls.password"
-    type="password"
-    placeholder="Password"
-    class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
-  />
-  <button type="submit" class="btn-accept content-center w-30">Login</button>
-</form>
+  <form
+    class="w-full place-content-center flex flex-col items-center gap-4"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <input
+      [formControl]="loginForm.controls.email"
+      type="text"
+      placeholder="Email"
+      class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
+    />
+    <input
+      [formControl]="loginForm.controls.password"
+      type="password"
+      placeholder="Password"
+      class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
+    />
+    <button type="submit" class="btn-accept content-center w-50">Login</button>
+  </form>
+  <h1 class="text mb-1 text-gray-300">
+    Don't have an account?
+    <a routerLink="/register" class="text-gray-300 hover:text-white"><u>Register</u></a>
+  </h1>
+</div>

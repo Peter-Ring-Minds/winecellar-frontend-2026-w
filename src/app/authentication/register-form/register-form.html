@@ -1,0 +1,61 @@
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit()"
+  class="w-md align-items justify-center place-content-center flex flex-col items-center gap-4 p-8 rounded-lg shadow-lg"
+>
+  <input
+    [formControl]="registerForm.controls.email"
+    type="text"
+    placeholder="Email"
+    class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
+  />
+
+  <input
+    [formControl]="registerForm.controls.password"
+    type="password"
+    placeholder="Password"
+    class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
+  />
+  <input
+    [formControl]="registerForm.controls.repeatPassword"
+    type="password"
+    placeholder="Confirm Password"
+    class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
+  />
+  @if (showErrors()) {
+    @if (
+      registerForm.controls.repeatPassword.touched && registerForm.controls.repeatPassword.invalid
+    ) {
+      <p class="text-red-500 text-sm mt-2">Confirm password is required</p>
+    }
+    @if (passwordDoesntMatch()) {
+      <p class="text-red-500 text-sm mt-2">Passwords do not match</p>
+    }
+
+    @if (registerForm.controls.email.hasError('email')) {
+      <p class="text-red-500 text-sm mt-2">Please enter a valid email address</p>
+    }
+    @if (registerForm.controls.password.hasError('minlength')) {
+      <p class="text-red-500 text-sm mt-2">Password must be at least 6 characters long</p>
+    }
+    @if (registerForm.controls.password.hasError('noDigit')) {
+      <p class="text-red-500 text-sm mt-2">Password must contain at least one digit</p>
+    }
+    @if (registerForm.controls.password.hasError('noUppercase')) {
+      <p class="text-red-500 text-sm mt-2">Password must contain at least one uppercase letter</p>
+    }
+    @if (registerForm.controls.password.hasError('noNonAlphanumeric')) {
+      <p class="text-red-500 text-sm mt-2">
+        Password must contain at least one non-alphanumeric character
+      </p>
+    }
+  }
+
+  @if (
+    registerForm.controls.email.touched && registerForm.controls.email.hasError('required')
+  ) {
+    <p class="text-red-500 text-sm mt-2">Email is required</p>
+  }
+
+  <button type="submit" class="btn-accept content-center w-50">{{ buttonText() }}</button>
+</form>
