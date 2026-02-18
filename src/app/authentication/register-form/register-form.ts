@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  input,
-  output,
-  Output,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -67,17 +59,6 @@ export class RegisterForm {
     this.authSubmit.emit(this.registerForm.getRawValue());
   }
 }
-
-const passWordMatchValidator = (control: AbstractControl) => {
-  const passwordControl = control.get('password');
-  const repeatPasswordControl = control.get('repeatPassword');
-
-  if (passwordControl?.value !== repeatPasswordControl?.value) {
-    return { passwordMismatch: true };
-  }
-
-  return null;
-};
 
 export const passwordValidators = {
   minLength: Validators.minLength(6),
