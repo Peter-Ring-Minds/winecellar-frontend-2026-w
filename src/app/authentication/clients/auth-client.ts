@@ -46,4 +46,19 @@ export class AuthClient {
         }),
       );
   }
+
+  public register(registerFormValue: { email: string; password: string }) {
+    return this.http
+      .post<{ accessToken: string }>('http://localhost:5132/auth/register', registerFormValue)
+      .pipe(
+        tap({
+          next: (response) => {
+            this._accessToken.set(response.accessToken);
+          },
+          error: (error) => {
+            console.error('Registration failed:', error);
+          },
+        }),
+      );
+  }
 }
