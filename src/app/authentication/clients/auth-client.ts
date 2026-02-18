@@ -44,7 +44,6 @@ export class AuthClient {
       .pipe(
         tap({
           next: (response) => {
-            console.log('Registration successful:', response);
             this._accessToken.set(response.accessToken);
           },
           error: (error) => {

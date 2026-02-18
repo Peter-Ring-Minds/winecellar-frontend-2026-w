@@ -35,6 +35,20 @@
     @if (registerForm.controls.email.hasError('email')) {
       <p class="text-red-500 text-sm mt-2">Please enter a valid email address</p>
     }
+    @if (registerForm.controls.password.hasError('minlength')) {
+      <p class="text-red-500 text-sm mt-2">Password must be at least 6 characters long</p>
+    }
+    @if (registerForm.controls.password.hasError('noDigit')) {
+      <p class="text-red-500 text-sm mt-2">Password must contain at least one digit</p>
+    }
+    @if (registerForm.controls.password.hasError('noUppercase')) {
+      <p class="text-red-500 text-sm mt-2">Password must contain at least one uppercase letter</p>
+    }
+    @if (registerForm.controls.password.hasError('noNonAlphanumeric')) {
+      <p class="text-red-500 text-sm mt-2">
+        Password must contain at least one non-alphanumeric character
+      </p>
+    }
   }
 
   <button type="submit" class="btn-accept content-center w-50">{{ buttonText() }}</button>

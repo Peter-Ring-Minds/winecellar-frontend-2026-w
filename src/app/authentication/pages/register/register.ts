@@ -31,7 +31,6 @@ export class Register {
   onSubmit(credentials: { email: string; password: string }) {
     this.authClient.register(credentials).subscribe({
       next: (accessToken) => {
-        console.log('Registration succesful:', accessToken);
         this.router.navigate(['login']);
       },
       error: (error) => {

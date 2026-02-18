@@ -27,17 +27,23 @@ export class RegisterForm {
   public buttonText = input('');
   public authSubmit = output<{ email: string; password: string }>();
 
-  registerForm = new FormGroup(
-    {
-      email: new FormControl('', {
-        validators: [Validators.required, Validators.email],
-        nonNullable: true,
-      }),
-      password: new FormControl('', { validators: [Validators.required], nonNullable: true }),
-      repeatPassword: new FormControl('', { validators: [Validators.required], nonNullable: true }),
-    },
-    { validators: passWordMatchValidator },
-  );
+  registerForm = new FormGroup({
+    email: new FormControl('', {
+      validators: [Validators.required, Validators.email],
+      nonNullable: true,
+    }),
+    password: new FormControl('', {
+      validators: [
+        Validators.required,
+        passwordValidators.minLength,
+        passwordValidators.hasDigit,
+        passwordValidators.hasUppercase,
+        passwordValidators.hasNonAlphanumeric,
+      ],
+      nonNullable: true,
+    }),
+    repeatPassword: new FormControl('', { validators: [Validators.required], nonNullable: true }),
+  });
 
   protected readonly passwordDoesntMatch = signal(false);
 
@@ -71,4 +77,13 @@ const passWordMatchValidator = (control: AbstractControl) => {
   }
 
   return null;
+};
+
+export const passwordValidators = {
+  minLength: Validators.minLength(6),
+  hasDigit: (control: AbstractControl) => (/\d/.test(control.value) ? null : { noDigit: true }),
+  hasUppercase: (control: AbstractControl) =>
+    /[A-Z]/.test(control.value) ? null : { noUppercase: true },
+  hasNonAlphanumeric: (control: AbstractControl) =>
+    /[^a-zA-Z0-9]/.test(control.value) ? null : { noNonAlphanumeric: true },
 };
