@@ -1,15 +1,21 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
+import { TokenValidatorService } from '../services/token-validator-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthClient {
   private readonly http = inject(HttpClient);
+  private readonly tokenValidator = inject(TokenValidatorService);
   private _accessToken = signal<string | null>(localStorage.getItem('accessToken'));
   public readonly accessToken = computed(() => this._accessToken());
-  public isLoggedIn = computed(() => this._accessToken() !== null);
+
+  public isLoggedIn = computed(() => {
+    const token = this._accessToken();
+    return token !== null && this.tokenValidator.isTokenValid(token);
+  });
 
   constructor() {
     effect(() => {
@@ -20,6 +26,9 @@ export class AuthClient {
         localStorage.removeItem('accessToken');
       }
     });
+  }
+  public logout() {
+    this._accessToken.set(null);
   }
 
   public login(loginFormValue: { email: string; password: string }) {

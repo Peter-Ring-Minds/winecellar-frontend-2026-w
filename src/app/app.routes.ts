@@ -13,4 +13,5 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'register', component: Register }
   { path: 'cellar', component: AddCellarPage, canActivate: [authGuard] },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
