@@ -2,6 +2,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './nav/navbar/navbar';
 import { AuthClient } from './authentication/clients/auth-client';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
