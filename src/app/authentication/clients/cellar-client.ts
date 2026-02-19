@@ -1,8 +1,6 @@
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
-import { rxResource } from '@angular/core/rxjs-interop';
-import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',

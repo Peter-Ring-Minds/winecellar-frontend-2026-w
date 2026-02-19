@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { CellarClient } from '../authentication/clients/cellar-client';
@@ -27,12 +26,14 @@ export class CellarsPage {
     if (this.cellarForm.valid === false) {
       return;
     }
-    this.cellarClient.postCellar(this.cellarForm.value.name ?? '');
+    this.cellarClient.postCellar(this.cellarForm.value.name ?? '').subscribe({
+      next: () => {
+        this.cellarsResource.reload();
+        this.cellarForm.reset();
+      },
+      error: (error) => {
+        console.error('Failed to add cellar:', error);
+      },
+    });
   }
-}
-
-export interface Cellar {
-  cellarId: number;
-  userId: Number;
-  name: string;
 }

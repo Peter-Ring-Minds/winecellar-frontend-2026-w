@@ -19,12 +19,20 @@ export class StorageUnitClient {
       `http://localhost:5132/api/Wine/by-storage-unit/${storageUnitId}`
     );
   }
+
+  public postStorageUnit(cellarId: string, name: string) {
+    return this.httpClient.post<StorageUnit>(`http://localhost:5132/api/StorageUnit`, {
+      cellarId,
+      name,
+    });
+  }
 }
 
 export interface StorageUnit {
   storageUnitId: string;
   name: string;
   cellarId: string;
+  totalWineQuantity: number;
 }
 
 export interface Wine {

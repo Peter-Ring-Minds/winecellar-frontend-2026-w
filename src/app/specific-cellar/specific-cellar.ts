@@ -1,15 +1,17 @@
-import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { CellarClient } from '../authentication/clients/cellar-client';
-import { Cellar } from '../cellars-page/cellars-page';
+import { Cellar } from '../authentication/clients/cellar-client';
 import { StorageUnitClient } from '../authentication/clients/storage-unit-client';
 import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
+import { AddStorage } from './add-storage/add-storage';
+import { ButtonComponent } from '../shared/ui/button/button';
 
 @Component({
   selector: 'app-specific-cellar',
-  imports: [CommonModule],
+  imports: [CommonModule, AddStorage, ButtonComponent],
   templateUrl: './specific-cellar.html',
   styleUrl: './specific-cellar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,6 +22,7 @@ export class SpecificCellar {
   private readonly storageUnitClient = inject(StorageUnitClient);
 
   cellarId = signal<string>('');
+  showAddStorage = signal(false);
 
   cellarResource = rxResource({
     stream: () => {
@@ -39,8 +42,6 @@ export class SpecificCellar {
     },
   });
 
-  wineQuantities = signal<Map<string, number>>(new Map());
-
   get storageUnits() {
     const value = this.storageUnitsResource.value();
     return Array.isArray(value) ? value : [];
@@ -51,36 +52,9 @@ export class SpecificCellar {
       const id = params['id'] || '';
       this.cellarId.set(id);
     });
-
-    effect(() => {
-      const storageUnits = this.storageUnitsResource.value();
-      if (!Array.isArray(storageUnits)) {
-        return;
-      }
-
-      const quantityMap = new Map<string, number>();
-
-      storageUnits.forEach((storageUnit) => {
-        this.storageUnitClient.getWinesByStorageUnit(storageUnit.storageUnitId).subscribe({
-          next: (wines) => {
-            const totalQuantity = wines.reduce((sum, wine) => sum + wine.quantity, 0);
-            quantityMap.set(storageUnit.storageUnitId, totalQuantity);
-            this.wineQuantities.set(new Map(quantityMap));
-          },
-          error: (error) => {
-            console.error(
-              `Error fetching wines for storage unit ${storageUnit.storageUnitId}:`,
-              error,
-            );
-            quantityMap.set(storageUnit.storageUnitId, 0);
-            this.wineQuantities.set(new Map(quantityMap));
-          },
-        });
-      });
-    });
   }
 
-  getWineQuantity(storageUnitId: string): number {
-    return this.wineQuantities().get(storageUnitId) || 0;
+  onStorageAdded() {
+    this.storageUnitsResource.reload();
   }
 }

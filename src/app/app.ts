@@ -28,13 +28,13 @@ export class App implements OnInit {
     if (currentUrl.length === 0) {
       return '';
     }
-    if (currentUrl.includes('/login')) {
+    if (currentUrl.includes('/login') || currentUrl.includes('/register')) {
       return `bg-[url('/backgrounds/login-bg.png')]`;
     }
     if (currentUrl.includes('/home')) {
       return `bg-[url('/backgrounds/home-bg.png')]`;
     }
-    if (currentUrl.includes('/cellar')) {
+    if (currentUrl.includes('/cellars') || currentUrl.includes('/specific-cellar')) {
       return `bg-[url('/backgrounds/add-cellar-bg.png')]`;
     }
     return '';

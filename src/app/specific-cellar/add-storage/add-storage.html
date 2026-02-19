@@ -1,0 +1,13 @@
+<div modal title="Add storage container" (closed)="closed.emit()" (onSubmit)="onSubmit()">
+  <form [formGroup]="addStorageForm" (ngSubmit)="onSubmit()" class="w-full flex flex-col gap-4">
+    <input
+      [formControl]="addStorageForm.controls.name"
+      type="text"
+      placeholder="Enter storage unit name"
+      class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
+    />
+    @if (showErrors() && addStorageForm.controls.name.invalid) {
+      <p class="text-red-500 text-sm">Name is required</p>
+    }
+  </form>
+</div>
