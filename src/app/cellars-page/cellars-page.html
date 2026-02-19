@@ -43,8 +43,11 @@
         <div class="text-lg font-bold text-black text-center">
           <img class="scale-65" src="/icons/icon-wine.png" />30
         </div>
-        <button class="flex self-center">
-          <img class="scale-50" src="/icons/icon-right-arrow.png" />
+        <button
+          [routerLink]="['/cellar', cellar.cellarId, 'specific-cellar']"
+          class="flex self-center w-[41.49px] h-[39.49px] overflow-hidden"
+        >
+          <img class="scale-100" src="/icons/icon-right-arrow.png" />
         </button>
       </div>
     </div>

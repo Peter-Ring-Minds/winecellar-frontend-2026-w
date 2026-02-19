@@ -15,7 +15,7 @@ export class CellarClient {
   }
 
   public getCellar(id: string) {
-    return this.httpClient.get<Cellar[]>(`http://localhost:5132/api/Cellar/${id}`);
+    return this.httpClient.get<Cellar>(`http://localhost:5132/api/Cellar/${id}`);
   }
 
   public putCellar(cellarName: string, cellarId: string) {
