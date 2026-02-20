@@ -57,7 +57,7 @@ export class CellarClient {
 }
 
 export interface Cellar {
-  cellarId: number;
-  userId: Number;
+  cellarId: string;
+  userId: string;
   name: string;
 }
