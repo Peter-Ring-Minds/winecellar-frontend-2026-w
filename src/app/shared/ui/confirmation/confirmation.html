@@ -1,0 +1,16 @@
+@if (show()) {
+  <div
+    modal
+    [title]="title()"
+    [primaryButtonText]="'Yes'"
+    [secondaryButtonText]="'No'"
+    (onSubmit)="confirmed.emit()"
+    (closed)="close()"
+  >
+    <p>This should be shown</p>
+  </div>
+}
+
+<button appButton variant="icon" (click)="onButtonClick()">
+  <img class="scale-100 w-[34px] h-[27px]" src="/icons/delete-icon.png" />
+</button>

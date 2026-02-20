@@ -26,14 +26,7 @@
         <div class="text-lg w-full border-l-1 border-b-1 p-2 font-bold ml-4 black text-wrap">
           {{ cellar.name }}
         </div>
-        <button
-          class="w-[41.49px] h-[39.49px]"
-          appButton
-          [variant]="'icon'"
-          (click)="OnDeleteCellar(cellar)"
-        >
-          <img class="scale-100" src="/icons/delete-icon.png" />
-        </button>
+        <app-confirmation (confirmed)="OnDeleteCellar(cellar)" />
       </div>
       <!--SPACEBOX-->
 

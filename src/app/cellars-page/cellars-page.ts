@@ -5,11 +5,12 @@ import { Cellar, CellarClient } from '../authentication/clients/cellar-client';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from '../shared/ui/button/button';
 import { AddCellarComponent } from './add-cellar/add-cellar';
+import { Confirmation } from '../shared/ui/confirmation/confirmation';
 
 @Component({
   standalone: true,
   selector: 'app-cellars-page',
-  imports: [ReactiveFormsModule, RouterModule, ButtonComponent, AddCellarComponent],
+  imports: [ReactiveFormsModule, RouterModule, ButtonComponent, AddCellarComponent, Confirmation],
   templateUrl: './cellars-page.html',
   styleUrl: './cellars-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
