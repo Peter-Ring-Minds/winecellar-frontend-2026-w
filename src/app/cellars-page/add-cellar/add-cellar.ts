@@ -11,10 +11,8 @@ import { CellarClient } from '../../authentication/clients/cellar-client';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddCellarComponent {
-  private readonly cellarClient = inject(CellarClient);
-
   cellarId = input.required<string>();
-  cellarAdded = output();
+  cellarAdded = output<string>();
   closed = output();
 
   addCellarForm = new FormGroup({
@@ -25,19 +23,18 @@ export class AddCellarComponent {
 
   onSubmit() {
     this.addCellarForm.markAllAsTouched();
+
+    const value = this.addCellarForm.getRawValue();
+
     if (!this.addCellarForm.valid) {
       this.showErrors.set(true);
       return;
     }
 
-    this.cellarClient.postCellar(this.addCellarForm.value.name ?? '').subscribe({
-      next: () => {
-        this.cellarAdded.emit();
-        this.closed.emit();
-      },
-      error: (error) => {
-        console.error('Failed to add cellar:', error);
-      },
-    });
+    if (!value.name || value.name.trim() === '') {
+      return;
+    }
+
+    this.cellarAdded.emit(value.name.trim());
   }
 }

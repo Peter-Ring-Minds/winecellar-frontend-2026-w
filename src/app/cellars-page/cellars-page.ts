@@ -22,24 +22,6 @@ export class CellarsPage {
   });
   showAddCellar = signal(false);
 
-  cellarForm = new FormGroup({
-    name: new FormControl('', { validators: [Validators.required], nonNullable: true }),
-  });
-
-  onSubmitCellar() {
-    if (this.cellarForm.valid === false) {
-      return;
-    }
-    this.cellarClient.postCellar(this.cellarForm.value.name ?? '').subscribe({
-      next: () => {
-        this.cellarsResource.reload();
-        this.cellarForm.reset();
-      },
-      error: (error) => {
-        console.error('Failed to add cellar:', error);
-      },
-    });
-  }
   OnDeleteCellar(cellar: Cellar) {
     this.cellarClient.deleteCellar(cellar.cellarId).subscribe({
       next: () => {
@@ -50,7 +32,16 @@ export class CellarsPage {
       },
     });
   }
-  onCellarAdded() {
-    this.cellarsResource.reload();
+
+  onCellarAdded(name: string) {
+    this.cellarClient.postCellar(name).subscribe({
+      next: () => {
+        this.cellarsResource.reload();
+        this.showAddCellar.set(false);
+      },
+      error: (error) => {
+        console.error('Failed to add cellar:', error);
+      },
+    });
   }
 }

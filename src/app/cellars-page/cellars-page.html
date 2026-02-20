@@ -12,7 +12,7 @@
 @if (showAddCellar()) {
   <app-add-cellar
     [cellarId]="''"
-    (cellarAdded)="onCellarAdded()"
+    (cellarAdded)="onCellarAdded($event)"
     (closed)="showAddCellar.set(false)"
   />
 }

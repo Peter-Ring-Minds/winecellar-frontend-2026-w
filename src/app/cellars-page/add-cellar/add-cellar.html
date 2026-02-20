@@ -1,5 +1,5 @@
 <div modal title="Add cellar" (closed)="closed.emit()" (onSubmit)="onSubmit()">
-  <form [formGroup]="addCellarForm" (ngSubmit)="onSubmit()" class="w-full flex flex-col gap-4">
+  <form [formGroup]="addCellarForm" (ngSubmit)="onSubmit()" class="w-full">
     <input
       [formControl]="addCellarForm.controls.name"
       type="text"
