@@ -51,11 +51,9 @@
     }
   }
 
-  @if (
-    registerForm.controls.email.touched && registerForm.controls.email.hasError('required')
-  ) {
+  @if (registerForm.controls.email.touched && registerForm.controls.email.hasError('required')) {
     <p class="text-red-500 text-sm mt-2">Email is required</p>
   }
 
-  <button type="submit" class="btn-accept content-center w-50">{{ buttonText() }}</button>
+  <button appButton variant="primary" type="submit" class="w-50">Register</button>
 </form>

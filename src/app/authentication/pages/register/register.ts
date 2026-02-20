@@ -16,6 +16,7 @@ import {
 import { RegisterForm } from '../../register-form/register-form';
 import { AuthClient } from '../../clients/auth-client';
 import { Router } from '@angular/router';
+import { ButtonComponent } from '../../../shared/ui/button/button';
 
 @Component({
   selector: 'app-register',

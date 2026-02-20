@@ -16,8 +16,12 @@ import { ButtonComponent } from '../button/button';
 
       <ng-content />
       <div class="flex justify-end gap-2 mt-2">
-        <button type="button" appButton variant="secondary" (click)="closed.emit()">Cancel</button>
-        <button appButton variant="primary" type="submit" (click)="onSubmit.emit()">Add</button>
+        <button type="button" appButton variant="secondary" (click)="closed.emit()">
+          {{ secondaryButtonText() }}
+        </button>
+        <button appButton variant="primary" type="submit" (click)="onSubmit.emit()">
+          {{ primaryButtonText() }}
+        </button>
       </div>
     </div>
   </div>`,
@@ -29,6 +33,8 @@ export class ModalComponent {
   closed = output();
   onSubmit = output();
   title = input('');
+  primaryButtonText = input('Add');
+  secondaryButtonText = input('Cancel');
   onClose() {
     this.closed.emit();
   }
