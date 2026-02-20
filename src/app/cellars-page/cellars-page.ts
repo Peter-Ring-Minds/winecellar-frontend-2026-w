@@ -3,10 +3,11 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { rxResource } from '@angular/core/rxjs-interop';
 import { Cellar, CellarClient } from '../authentication/clients/cellar-client';
 import { RouterModule } from '@angular/router';
+import { ButtonComponent } from '../shared/ui/button/button';
 
 @Component({
   selector: 'app-cellars-page',
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule, ButtonComponent],
   templateUrl: './cellars-page.html',
   styleUrl: './cellars-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
