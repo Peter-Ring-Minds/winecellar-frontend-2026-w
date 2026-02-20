@@ -1,0 +1,13 @@
+<div modal title="Add cellar" (closed)="closed.emit()" (onSubmit)="onSubmit()">
+  <form [formGroup]="addCellarForm" (ngSubmit)="onSubmit()" class="w-full">
+    <input
+      [formControl]="addCellarForm.controls.name"
+      type="text"
+      placeholder="Enter cellar name"
+      class="border bg-stone-200 border-gray-300 p-2 w-full rounded"
+    />
+    @if (showErrors() && addCellarForm.controls.name.invalid) {
+      <p class="text-red-500 text-sm">Name is required</p>
+    }
+  </form>
+</div>

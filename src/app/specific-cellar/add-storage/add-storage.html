@@ -1,5 +1,5 @@
 <div modal title="Add storage container" (closed)="closed.emit()" (onSubmit)="onSubmit()">
-  <form [formGroup]="addStorageForm" (ngSubmit)="onSubmit()" class="w-full flex flex-col gap-4">
+  <form [formGroup]="addStorageForm" (ngSubmit)="onSubmit()" class="w-full">
     <input
       [formControl]="addStorageForm.controls.name"
       type="text"

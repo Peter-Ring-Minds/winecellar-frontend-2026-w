@@ -17,20 +17,22 @@ export class CellarClient {
   }
 
   public putCellar(cellarName: string, cellarId: string) {
-    return this.httpClient.put(`http://localhost:5132/api/Cellar/${cellarId}`, cellarName).pipe(
-      tap({
-        next: (response) => {
-          console.log('Cellar put Successful:', response);
-        },
-        error: (error) => {
-          console.error('Cellar put failed', error);
-        },
-      }),
-    );
+    return this.httpClient
+      .put(`http://localhost:5132/api/Cellar/${cellarId}`, { name: cellarName })
+      .pipe(
+        tap({
+          next: (response) => {
+            console.log('Cellar put Successful:', response);
+          },
+          error: (error) => {
+            console.error('Cellar put failed', error);
+          },
+        }),
+      );
   }
 
   public postCellar(cellarName: string) {
-    return this.httpClient.post(`http://localhost:5132/api/Cellar`, cellarName).pipe(
+    return this.httpClient.post(`http://localhost:5132/api/Cellar`, { name: cellarName }).pipe(
       tap({
         next: (response) => {
           console.log('Cellar post successful:', response);
