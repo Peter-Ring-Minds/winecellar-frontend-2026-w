@@ -6,7 +6,7 @@ import { ModalComponent } from '../../shared/ui/modal/modal';
 
 @Component({
   selector: 'app-add-storage',
-  imports: [ReactiveFormsModule, ButtonComponent, ModalComponent],
+  imports: [ReactiveFormsModule, ModalComponent],
   templateUrl: './add-storage.html',
   styleUrl: './add-storage.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

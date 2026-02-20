@@ -6,11 +6,11 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { email } from '@angular/forms/signals';
+import { ButtonComponent } from '../../shared/ui/button/button';
 
 @Component({
   selector: 'app-register-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './register-form.html',
   styleUrl: './register-form.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
