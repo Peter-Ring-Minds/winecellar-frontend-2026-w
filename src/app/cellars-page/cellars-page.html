@@ -17,12 +17,10 @@
   />
 }
 <!-- Forsøg på en cool cellar ting (scroll  osv)-->
-<div
-  class="w-3xl flex flex-col gap-4 bg-black/60 p-2 rounded-lg shadow-lg overflow-y-auto max-h-170"
->
+<card class="" appCard [variant]="'wide'">
   @for (cellar of cellarsResource.value(); track cellar.cellarId) {
     <div class="flex bg-[#A5846A]/80 flex-row justify-between rounded-lg">
-      <div class="flex w-full max-w-3xs flex-row-start place-content-start pr items-center">
+      <div class="flex w-full max-w-3xs items-center">
         <div class="text-lg w-full border-l-1 border-b-1 p-2 font-bold ml-4 black text-wrap">
           {{ cellar.name }}
         </div>
@@ -55,4 +53,4 @@
       </div>
     </div>
   }
-</div>
+</card>
