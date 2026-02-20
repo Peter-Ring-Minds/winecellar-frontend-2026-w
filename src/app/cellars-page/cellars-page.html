@@ -1,12 +1,21 @@
-<div class="flex flex-row-start w-md h-md">
-  <div>
-    <div class="p-2 bg-black/30 rounded-xl mt-10 mb-8 mask-t-from-50%">
-      <div class="text-4xl font-bold text-white">
-        <h1>Check out your cellar, yo!</h1>
-      </div>
+<div class="w-3xl flex flex-row items-end justify-between mt-10 mb-2">
+  <div class="p-2 bg-black/30 rounded-xl mask-t-from-50%">
+    <div class="text-4xl font-bold text-white">
+      <h1>Check out your cellar, yo!</h1>
     </div>
   </div>
+  <button appButton variant="primary" type="button" (click)="showAddCellar.set(true)" class="w-40">
+    Add cellar
+  </button>
 </div>
+
+@if (showAddCellar()) {
+  <app-add-cellar
+    [cellarId]="''"
+    (cellarAdded)="onCellarAdded()"
+    (closed)="showAddCellar.set(false)"
+  />
+}
 <!-- Forsøg på en cool cellar ting (scroll  osv)-->
 <div
   class="w-3xl flex flex-col gap-4 bg-black/60 p-2 rounded-lg shadow-lg overflow-y-auto max-h-170"

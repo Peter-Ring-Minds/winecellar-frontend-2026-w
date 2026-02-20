@@ -13,9 +13,9 @@ export class ButtonComponent {
   hostClasses = computed(() => {
     switch (this.variant()) {
       case 'primary':
-        return `w-32 p-2 rounded-lg font-bold bg-[#A5846A] text-black hover:bg-stone-600`;
+        return `w-32 p-2 rounded-lg font-bold bg-[#A5846A] text-black hover:bg-stone-600 cursor-pointer`;
       case 'secondary':
-        return `w-32 p-2 rounded-lg font-bold bg-stone-500 text-white cursor-pointer hover:bg-black/20`;
+        return `w-32 p-2 rounded-lg font-bold bg-stone-500 text-white cursor-pointer hover:bg-stone-600`;
       case 'ghost':
         return `w-32 p-2 rounded-lg font-bold bg-transparent text-[#A5846A] border border-[#A5846A] cursor-pointer hover:bg-black/20`;
       case 'icon':
