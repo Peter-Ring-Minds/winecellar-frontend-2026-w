@@ -20,13 +20,14 @@
   class="w-3xl justify-center place-content-center flex flex-col gap-4 bg-black/60 p-2 rounded-lg shadow-lg"
 >
   @for (storageUnit of storageUnits; track storageUnit.storageUnitId) {
-    <div class="flex bg-[#A5846A]/80 flex-row rounded-lg">
+    <div class="flex bg-[#A5846A]/80 flex-row justify-between rounded-lg">
       <div class="flex w-full max-w-3xs flex-row-start place-content-start pr items-center">
         <div class="text-lg w-full border-l-1 border-b-1 p-2 font-bold ml-4 black text-wrap">
           {{ storageUnit.name }}
         </div>
+        <app-confirmation (confirmed)="OnDeleteStorageUnit(storageUnit)" />
       </div>
-      <div class="flex-auto justify-stretch"></div>
+
       <div class="flex flex-row-end place-content-around items-center">
         <div class="text-lg font-bold text-black text-center">
           <img class="scale-65" src="/icons/icon-wine.png" />{{ storageUnit.totalWineQuantity }}

@@ -10,13 +10,13 @@ export class StorageUnitClient {
 
   public getStorageUnitsByCellar(cellarId: string) {
     return this.httpClient.get<StorageUnit[]>(
-      `http://localhost:5132/api/StorageUnit/by-cellar/${cellarId}`
+      `http://localhost:5132/api/StorageUnit/by-cellar/${cellarId}`,
     );
   }
 
   public getWinesByStorageUnit(storageUnitId: string) {
     return this.httpClient.get<Wine[]>(
-      `http://localhost:5132/api/Wine/by-storage-unit/${storageUnitId}`
+      `http://localhost:5132/api/Wine/by-storage-unit/${storageUnitId}`,
     );
   }
 
@@ -25,6 +25,10 @@ export class StorageUnitClient {
       cellarId,
       name,
     });
+  }
+
+  public deleteStorageUnit(id: string) {
+    return this.httpClient.delete(`http://localhost:5132/api/StorageUnit/${id}`);
   }
 }
 

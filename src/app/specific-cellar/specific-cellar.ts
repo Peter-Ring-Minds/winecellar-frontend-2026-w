@@ -8,10 +8,11 @@ import { CommonModule } from '@angular/common';
 import { of } from 'rxjs';
 import { AddStorage } from './add-storage/add-storage';
 import { ButtonComponent } from '../shared/ui/button/button';
+import { Confirmation } from '../shared/ui/confirmation/confirmation';
 
 @Component({
   selector: 'app-specific-cellar',
-  imports: [CommonModule, AddStorage, ButtonComponent],
+  imports: [CommonModule, AddStorage, ButtonComponent, Confirmation],
   templateUrl: './specific-cellar.html',
   styleUrl: './specific-cellar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -56,5 +57,16 @@ export class SpecificCellar {
 
   onStorageAdded() {
     this.storageUnitsResource.reload();
+  }
+
+  OnDeleteStorageUnit(storageUnit: any) {
+    this.storageUnitClient.deleteStorageUnit(storageUnit.storageUnitId).subscribe({
+      next: () => {
+        this.storageUnitsResource.reload();
+      },
+      error: (error) => {
+        console.error('Failed to delete storage unit:', error);
+      },
+    });
   }
 }
