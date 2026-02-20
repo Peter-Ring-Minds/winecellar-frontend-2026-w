@@ -7,45 +7,39 @@
     </div>
   </div>
 </div>
-<!--
-<div
-  class="grid grid-cols-3 mx-auto flex flex-col items-center justify-center content-end pb-8 pl-4 pr-4 h-full gap-8"
->
-  @for (cellar of cellarsResource.value(); track cellar.cellarId) {
-    <div>
-      <div
-        class="flex flex-col items-center gap-4 shadow-lg p-4 rounded-3xl bg-black/60 border-2 border-stone-500"
-      >
-        <img src="/icons/cellar-add-icon.png" />
-        <p class="text-lg font-bold mb-2 text-white text-center">{{ cellar.name }}</p>
-      </div>
-    </div>
-  }
-</div>
--->
 <!-- Forsøg på en cool cellar ting (scroll  osv)-->
 <div
-  class="w-3xl justify-center place-content-center flex flex-col gap-4 bg-black/60 p-2 rounded-lg shadow-lg"
+  class="w-3xl flex flex-col gap-4 bg-black/60 p-2 rounded-lg shadow-lg overflow-y-auto max-h-170"
 >
   @for (cellar of cellarsResource.value(); track cellar.cellarId) {
-    <div class="flex bg-[#A5846A]/80 flex-row rounded-lg">
+    <div class="flex bg-[#A5846A]/80 flex-row justify-between rounded-lg">
       <div class="flex w-full max-w-3xs flex-row-start place-content-start pr items-center">
         <div class="text-lg w-full border-l-1 border-b-1 p-2 font-bold ml-4 black text-wrap">
           {{ cellar.name }}
         </div>
+        <button
+          class="w-[41.49px] h-[39.49px]"
+          appButton
+          [variant]="'icon'"
+          (click)="OnDeleteCellar(cellar)"
+        >
+          <img class="scale-100" src="/icons/delete-icon.png" />
+        </button>
       </div>
       <!--SPACEBOX-->
-      <div class="flex-auto justify-stretch"></div>
+
       <!--STORAGE  AND  WINE AMOUNTS +  BUTTON-->
       <div class="flex flex-row-end place-content-around items-center">
         <div class="text-lg font-bold text-black"></div>
         <img class="scale-65" src="/icons/icon-storage.png" />
         <div class="text-lg font-bold text-black text-center">
-          <img class="scale-65" src="/icons/icon-wine.png" />30
+          <img class="scale-65" src="/icons/icon-wine.png" />
         </div>
         <button
           [routerLink]="['/cellar', cellar.cellarId, 'specific-cellar']"
-          class="flex self-center w-[41.49px] h-[39.49px] overflow-hidden"
+          class="flex self-center w-[41.49px] h-[39.49px]"
+          appButton
+          [variant]="'icon'"
         >
           <img class="scale-100" src="/icons/icon-right-arrow.png" />
         </button>
@@ -53,4 +47,3 @@
     </div>
   }
 </div>
-½

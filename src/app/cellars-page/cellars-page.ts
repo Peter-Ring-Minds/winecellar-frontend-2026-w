@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { CellarClient } from '../authentication/clients/cellar-client';
+import { Cellar, CellarClient } from '../authentication/clients/cellar-client';
 import { RouterModule } from '@angular/router';
+import { ButtonComponent } from '../shared/ui/button/button';
 
 @Component({
   selector: 'app-cellars-page',
-  imports: [ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, RouterModule, ButtonComponent],
   templateUrl: './cellars-page.html',
   styleUrl: './cellars-page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,6 +34,16 @@ export class CellarsPage {
       },
       error: (error) => {
         console.error('Failed to add cellar:', error);
+      },
+    });
+  }
+  OnDeleteCellar(cellar: Cellar) {
+    this.cellarClient.deleteCellar(cellar.cellarId).subscribe({
+      next: () => {
+        this.cellarsResource.reload();
+      },
+      error: (error) => {
+        console.error('Failed to delete cellar:', error);
       },
     });
   }
