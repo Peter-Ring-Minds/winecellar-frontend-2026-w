@@ -4,13 +4,15 @@ import { HomeComponent } from './home/pages/home/home';
 import { authGuard } from './authentication/guards/auth-guard';
 import { loggedInGuard } from './authentication/guards/logged-in-guard';
 import { Register } from './authentication/pages/register/register';
-import { AddCellarPage } from './add-cellar/add-cellar-page/add-cellar-page';
+import { CellarsPage } from './cellars-page/cellars-page';
+import { SpecificCellar } from './specific-cellar/specific-cellar';
 
 //Remember: ROUTE ORDER MATTERS! The first match will be used, so more specific routes should be defined before less specific ones.
 export const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [loggedInGuard] },
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: 'register', component: Register },
-  { path: 'cellar', component: AddCellarPage, canActivate: [authGuard] },
+  { path: 'cellars', component: CellarsPage, canActivate: [authGuard] },
+  { path: 'cellar/:id/specific-cellar', component: SpecificCellar, canActivate: [authGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
